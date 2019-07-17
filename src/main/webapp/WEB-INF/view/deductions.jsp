@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@page isELIgnored="false"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <title>Centraprise</title>
@@ -43,26 +47,26 @@
 							<img src="/images/logo.gif" />
 						</div>
 					</a>
-						<ul class="nav" id="myMenu">
-						<li id="item2"><a href="/emp"><i class="fa fa-home"></i>
-								<span class="collapse in hidden-xs">Home</span></a></li>
-						<li id="item3"><a href="/addemployee"><i class="fa fa-users"></i>
-								<span class="collapse in hidden-xs">Employee Details</span></a></li>
-						<li id="item4"><a href="/salarystructure"><i
+					<ul class="nav" id="myMenu">
+						<li id="item2"><a href="employee.html"><i
+								class="fa fa-home"></i> <span class="collapse in hidden-xs">Home</span></a></li>
+						<li id="item3"><a href="add-employee.html"><i
+								class="fa fa-users"></i> <span class="collapse in hidden-xs">Employee
+									Details</span></a></li>
+						<li id="item4"><a href="monthendprocess.html"><i
 								class="fa fa-calendar"></i> <span class="collapse in hidden-xs">Month
 									End Process</span></a></li>
-						<li id="item5"><a href="/saveDeductionInfo"><i
+						<li id="item5"><a href="deductions.html"><i
 								class="fa fa-money"></i> <span class="collapse in hidden-xs">IT
 									Benefit</span></a></li>
-						<li id="item5"><a href="/finalsalaryinfo"><i
+						<li id="item5"><a href="salarystructure.html"><i
 								class="fa fa-money"></i> <span class="collapse in hidden-xs">Salary
 									Structure</span></a></li>
-						<li id="item5"><a href="/leaveInfo"><i
+						<li id="item5"><a href="leavemanagement.html"><i
 								class="fa fa-minus"></i> <span class="collapse in hidden-xs">Leave
 									Management</span></a></li>
-						<li id="item1"><a href="/logout"><i
-								class="fa fa-sign-out"></i><span class="collapse in hidden-xs">
-									Log Out</span></a></li>
+						<li id="item1"><a href=""><i class="fa fa-sign-out"></i><span
+								class="collapse in hidden-xs"> Log Out</span></a></li>
 					</ul>
 
 				</div>
@@ -134,27 +138,63 @@
 												<strong>Employee Number</strong>
 											</center></th>
 										<th><center>
-												<strong>80C - Payment of Life Insurance Premium
-													(For self, spouse & children)</strong>
+												<strong>80C</strong>
 											</center></th>
 										<th><center>
-												<strong>80C - Contribution to Unit Linked Insurance
-													Scheme - ULIP (For self, spouse & children)</strong>
+												<strong>80CCC</strong>
 											</center></th>
 										<th><center>
-												<strong>80CCC - Contribution to Pension Plans
-													(Self)</strong>
+												<strong>80CCD</strong>
 											</center></th>
 										<th><center>
-												<strong>80C - Deposit in Public Provident Fund-PPF
-													(For self, spouse & children)</strong>
+												<strong>80D</strong>
 											</center></th>
-
+										<th><center>
+												<strong>80DP</strong>
+											</center></th>
+										<th><center>
+												<strong>80DS</strong>
+											</center></th>
+										<th><center>
+												<strong>80CCG</strong>
+											</center></th>
+										<th><center>
+												<strong>80DDB</strong>
+											</center></th>
+										<th><center>
+												<strong>80DD</strong>
+											</center></th>
+										<th><center>
+												<strong>80U</strong>
+											</center></th>
+										<th><center>
+												<strong>80E</strong>
+											</center></th>
+										<th><center>
+												<strong>80EE</strong>
+											</center></th>
 									</tr>
 								</thead>
 								<tbody>
 
-
+									<c:forEach items="${deductionInfo}" var="employee">
+										<tr>
+											<td>${employee.id}</td>
+											<td>${employee.employeeNumber}</td>
+											<td>${employee.c}</td>
+											<td>${employee.ccc}</td>
+											<td>${employee.ccd}</td>
+											<td>${employee.d}</td>
+											<td>${employee.dp}</td>
+											<td>${employee.ds}</td>
+											<td>${employee.ccg}</td>
+											<td>${employee.ddb}</td>
+											<td>${employee.dd}</td>
+											<td>${employee.u}</td>
+											<td>${employee.e}</td>
+											<td>${employee.ee}</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>

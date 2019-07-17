@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +31,7 @@ import com.centraprise.hrmodule.repository.EmployeeRepository;
 //@Transactional
 public class EmployeeServiceImpl implements EmployeeService {
 
+	private static final Logger log = LoggerFactory.getLogger(EmployeeServiceImpl.class);
 	@Autowired
 	private DateParser dateParser;
 	@Autowired
@@ -58,7 +61,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 					employeeListDTOs.add(dto);
 				}
 			}
+			log.info("Returningn Employee details===>" + employeeListDTOs);
 		} catch (Exception e) {
+			log.error("Database Exception Catched===>" + e.getMessage());
 			e.printStackTrace();
 			throw new DatabaseException("Datebase is Down");
 		}
@@ -66,97 +71,78 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-
 	public void saveEmployee(EmployeeCommand employeeDetails) {
+		log.info("saveEmployee(EmployeeCommand employeeDetails) invoked with data ====>" + employeeDetails);
+		EmployeeDetails empDetails = new EmployeeDetails();
+		EmployeeAddress address = new EmployeeAddress();
+		AssignmentInformation assignmentInfo = new AssignmentInformation();
+		BankInformation bankInfo = new BankInformation();
+		ProvidentFundInformation providentInfo = new ProvidentFundInformation();
+		Set<AssignmentInformation> infos = new HashSet<>();
+		Set<EmployeeAddress> empaddress = new HashSet<>();
+		Set<ProvidentFundInformation> fundinfos = new HashSet<ProvidentFundInformation>();
+		Set<BankInformation> bankInfos = new HashSet<BankInformation>();
 		try {
-			EmployeeDetails empDetails = new EmployeeDetails();
-			EmployeeAddress address = new EmployeeAddress();
-			AssignmentInformation assignmentInfo = new AssignmentInformation();
-			BankInformation bankInfo = new BankInformation();
-			ProvidentFundInformation providentInfo = new ProvidentFundInformation();
-			Set<AssignmentInformation> infos = new HashSet<>();
-			Set<EmployeeAddress> empaddress = new HashSet<>();
-			Set<ProvidentFundInformation> fundinfos = new HashSet<ProvidentFundInformation>();
-			Set<BankInformation> bankInfos = new HashSet<BankInformation>();
+			System.out.println("here ok");
+			empDetails.setEmployeeNumber(employeeDetails.getEmployeenumber());
+			empDetails.setEmployeeName(employeeDetails.getName());
+			empDetails.setSex(employeeDetails.getGender());
+			empDetails.setPanNumber(employeeDetails.getPan());
+			empDetails.setMaritalStatus(employeeDetails.getMaritalstatus());
+			empDetails.setEmailAddress(employeeDetails.getEmail());
+			empDetails.setPhoneNumber(employeeDetails.getPhone());
+			empDetails.setPassword(employeeDetails.getPassword());
+			empDetails.setEmployeeActive(true);
+			address.setFlatNumber(employeeDetails.getDoornum());
+			address.setVillage(employeeDetails.getVlg());
+			address.setMandal(employeeDetails.getMandal());
+			address.setCountry(employeeDetails.getCountry());
+			address.setState(employeeDetails.getState());
+			address.setDistrict(employeeDetails.getDistrict());
+			address.setPincode(Integer.parseInt(employeeDetails.getPin()));
 			try {
-				System.out.println("here ok");
-				empDetails.setEmployeeNumber(employeeDetails.getEmployeenumber());
-				empDetails.setEmployeeName(employeeDetails.getName());
-				empDetails.setSex(employeeDetails.getGender());
-
-				try {
-					empDetails.setDateOfBirth(dateParser.parseDate(employeeDetails.getBday()));
-				} catch (DateParserException e) {
-					e.printStackTrace();
-
-					throw new DateParserException("error while parsing date");
-				}
-
-				empDetails.setPanNumber(employeeDetails.getPan());
-				empDetails.setMaritalStatus(employeeDetails.getMaritalstatus());
-				empDetails.setEmailAddress(employeeDetails.getEmail());
-				empDetails.setPhoneNumber(employeeDetails.getPhone());
-				empDetails.setPassword(employeeDetails.getPassword());
-				empDetails.setEmployeeActive(true);
-				address.setFlatNumber(employeeDetails.getDoornum());
-				address.setVillage(employeeDetails.getVlg());
-				address.setMandal(employeeDetails.getMandal());
-				address.setCountry(employeeDetails.getCountry());
-				address.setState(employeeDetails.getState());
-				address.setDistrict(employeeDetails.getDistrict());
-				address.setPincode(Integer.parseInt(employeeDetails.getPin()));
-				address.setEmployeeDetails(empDetails);
-				empaddress.add(address);
-				empDetails.setAddress(empaddress);
-				try {
-					assignmentInfo.setAssignmentEndDate(dateParser.parseDate(employeeDetails.getEndDate()));
-					assignmentInfo.setAssignmentStartDate(dateParser.parseDate(employeeDetails.getStartdate()));
-					assignmentInfo.setDateOfJoining(dateParser.parseDate(employeeDetails.getJoindate()));
-				} catch (DateParserException e) {
-					e.printStackTrace();
-					throw new DateParserException("error while parsing date");
-				}
-
-				assignmentInfo.setJob(employeeDetails.getJob());
-				assignmentInfo.setManager(employeeDetails.getManager());
-				assignmentInfo.setYearsOfService(employeeDetails.getService());
-				assignmentInfo.setEmployeeDetails(empDetails);
-				infos.add(assignmentInfo);
-				empDetails.setAssignmentInfo(infos);
-
-				bankInfo.setAccountNumber(employeeDetails.getAccountnumber());
-				bankInfo.setBankName(employeeDetails.getBankname());
-				bankInfo.setIfscCode(employeeDetails.getIfsc());
-				bankInfo.setEmployeeDetails(empDetails);
-				bankInfos.add(bankInfo);
-				empDetails.setBankInfo(bankInfos);
-
-				providentInfo.setUanNumber(employeeDetails.getUan());
-				providentInfo.setAdharNumber(employeeDetails.getAdhar());
-				providentInfo.setPrevoiusEmployee(employeeDetails.getPreviousemp());
-
-				try {
-
-					providentInfo.setDateOfLeaving(dateParser.parseDate(employeeDetails.getPreviousempleavingdate()));
-					providentInfo.setStartDate(dateParser.parseDate(employeeDetails.getPreviousempstartdate()));
-					providentInfo.setEndDate(dateParser.parseDate(employeeDetails.getPreviousempenddate()));
-				} catch (DateParserException e) {
-					e.printStackTrace();
-					throw new DateParserException("error while parsing date");
-				}
-
-				fundinfos.add(providentInfo);
-				empDetails.setProvidentInfo(fundinfos);
-				providentInfo.setEmployeeDetails(empDetails);
-				employeeRepository.save(empDetails);
-			} catch (Exception e) {
-				throw new DatabaseException("Parsing exception miss match in data types");
+				empDetails.setDateOfBirth(dateParser.parseDate(employeeDetails.getBday()));
+				assignmentInfo.setAssignmentEndDate(dateParser.parseDate(employeeDetails.getEndDate()));
+				assignmentInfo.setAssignmentStartDate(dateParser.parseDate(employeeDetails.getStartdate()));
+				assignmentInfo.setDateOfJoining(dateParser.parseDate(employeeDetails.getJoindate()));
+				providentInfo.setDateOfLeaving(dateParser.parseDate(employeeDetails.getPreviousempleavingdate()));
+				providentInfo.setStartDate(dateParser.parseDate(employeeDetails.getPreviousempstartdate()));
+				providentInfo.setEndDate(dateParser.parseDate(employeeDetails.getPreviousempenddate()));
+			} catch (DateParserException e) {
+				e.printStackTrace();
+				log.error("Exception while parsing date =======>" + e);
+				throw new DateParserException("error while parsing date");
 			}
+			address.setEmployeeDetails(empDetails);
+			empaddress.add(address);
+			empDetails.setAddress(empaddress);
+			assignmentInfo.setJob(employeeDetails.getJob());
+			assignmentInfo.setManager(employeeDetails.getManager());
+			assignmentInfo.setYearsOfService(employeeDetails.getService());
+			assignmentInfo.setEmployeeDetails(empDetails);
+			infos.add(assignmentInfo);
+			empDetails.setAssignmentInfo(infos);
 
-		} catch (DatabaseException e) {
+			bankInfo.setAccountNumber(employeeDetails.getAccountnumber());
+			bankInfo.setBankName(employeeDetails.getBankname());
+			bankInfo.setIfscCode(employeeDetails.getIfsc());
+			bankInfo.setEmployeeDetails(empDetails);
+			bankInfos.add(bankInfo);
+			empDetails.setBankInfo(bankInfos);
+			providentInfo.setUanNumber(employeeDetails.getUan());
+			providentInfo.setAdharNumber(employeeDetails.getAdhar());
+			providentInfo.setPrevoiusEmployee(employeeDetails.getPreviousemp());
+
+			fundinfos.add(providentInfo);
+			empDetails.setProvidentInfo(fundinfos);
+			providentInfo.setEmployeeDetails(empDetails);
+			employeeRepository.save(empDetails);
+		} catch (Exception e) {
+			log.error("Exception Catched =======>" + e);
 			e.printStackTrace();
-			throw new DatabaseException("Datebase is Down");
+			throw new DatabaseException("Parsing exception miss match in data types");
 		}
+
 	}
 
 	@Override
@@ -165,17 +151,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 		EmployeeInfoListDTO dtos = new EmployeeInfoListDTO();
 		try {
 			employeeDetails = employeeRepository.findByEmpIdAndEmployeeActive(employeenumber, true);
+			log.info("EmployeeDetails=========" + employeeDetails);
 			System.out.println(employeeDetails);
 			dtos.setEmployeenumber(employeeDetails.getEmployeeNumber());
 			dtos.setName(employeeDetails.getEmployeeName());
 			dtos.setEmpId(employeeDetails.getEmpId());
 			dtos.setGender(employeeDetails.getSex());
-
 			try {
 				dtos.setBday(dateParser.parseDateToString(employeeDetails.getDateOfBirth()));
 			} catch (Exception e) {
-
+				log.error("Error while parsing date===>" + e.getMessage());
 				e.printStackTrace();
+				throw new DateParserException("Error While parsing date");
 
 			}
 			dtos.setPan(employeeDetails.getPanNumber());
@@ -203,7 +190,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 						dtos.setJoindate(dateParser.parseDateToString(assignInfo.getDateOfJoining()));
 					} catch (Exception e) {
 						e.printStackTrace();
-
+						log.error("Error while parsing date===>" + e.getMessage());
+						throw new DateParserException("Error While parsing date");
 					}
 
 					dtos.setJob(assignInfo.getJob());
@@ -231,14 +219,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 						dtos.setPreviousempenddate(dateParser.parseDateToString(proviInformation.getEndDate()));
 					} catch (Exception e) {
 						e.printStackTrace();
+						log.error("Error while parsing date===>" + e.getMessage());
 						throw new DateParserException("Error While parsing date");
 					}
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			log.error("Error in  database===>" + e.getMessage());
 			throw new DatabaseException("Datebase is Down");
 		}
+		log.info("Returning data with========>" + dtos);
 		return dtos;
 	}
 
@@ -261,8 +252,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 			try {
 				employeeDetails.setDateOfBirth(dateParser.parseDate(employeeCommand.getBday()));
 			} catch (DateParserException e) {
+				log.error("Exception while parsing date =======>" + e);
 				e.printStackTrace();
-
 				throw new DatabaseException("error while parsing date");
 			}
 			employeeDetails.setPanNumber(employeeCommand.getPan());
@@ -291,6 +282,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 					assignInfo.setAssignmentStartDate(dateParser.parseDate(employeeCommand.getStartdate()));
 					assignInfo.setDateOfJoining(dateParser.parseDate(employeeCommand.getJoindate()));
 				} catch (DateParserException e) {
+					log.error("Exception while parsing date =======>" + e);
 					e.printStackTrace();
 					throw new DatabaseException("error while parsing date");
 				}
@@ -317,6 +309,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 					pInfo.setStartDate(dateParser.parseDate(employeeCommand.getPreviousempstartdate()));
 					pInfo.setEndDate(dateParser.parseDate(employeeCommand.getPreviousempenddate()));
 				} catch (DateParserException e) {
+					log.error("Exception while parsing date =======>" + e);
 					e.printStackTrace();
 					throw new DatabaseException("error while parsing date");
 				}
@@ -331,6 +324,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			employeeDetails.setProvidentInfo(providentFundInformations);
 			entityManager.merge(employeeDetails);
 		} catch (Exception e) {
+			log.error("Database Exception=======>" + e);
 			e.printStackTrace();
 			throw new DatabaseException("Datebase is Down");
 		}
@@ -341,12 +335,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public void deleteEmployeeById(int employeeId) {
 		int count = 0;
 		try {
+			log.info("deleteEmployeeById(int employeeId) invoked==>" + employeeId);
 			// count = employeeRepository.updateByEmpId(employeeId);
 			EmployeeDetails details = entityManager.find(EmployeeDetails.class, employeeId);
 			details.setEmployeeActive(false);
 			entityManager.merge(details);
 			System.out.println(count);
 		} catch (Exception e) {
+			log.error("Database Exception=======>" + e);
 			e.printStackTrace();
 			throw new DatabaseException("Datebase is Down");
 		}
@@ -359,10 +355,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 		EmployeeDetails details = null;
 		try {
 			details = employeeRepository.findByEmpIdAndEmployeeActive(empId, true);
+			log.info("Employeee number already exists with number=======>" + empId);
 		} catch (Exception e) {
+			log.error("Database Exception=======>" + e);
 			e.printStackTrace();
 			throw new DatabaseException("Datebase is Down");
 		}
 		return details;
 	}
+
 }

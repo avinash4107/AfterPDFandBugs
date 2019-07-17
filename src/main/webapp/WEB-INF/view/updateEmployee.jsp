@@ -329,8 +329,8 @@
 									<div>
 										<c:set var="bday" value="${command.bday}" />
 										<label class="lable-name">Date of Birth * </label> <input
-											type="date" class="input-name" id="bday" name="bday"
-											required="" value=var />
+											type="text" class="input-name" id="bday" name="bday"
+											required="" value="${command.bday}" />
 									</div>
 									<form:errors path="bday" cssClass="errormsg" />
 								</div>

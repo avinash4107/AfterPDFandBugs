@@ -1,6 +1,5 @@
 package com.centraprise.hrmodule.model;
 
-
 public class EmployeeListDTO {
 
 	private int primaryEmployeeId;
@@ -71,6 +70,12 @@ public class EmployeeListDTO {
 
 	public void setJoiningDate(String joiningDate) {
 		this.joiningDate = joiningDate;
+	}
+
+	@Override
+	public String toString() {
+		return "EmployeeListDTO [primaryEmployeeId=" + primaryEmployeeId + ", id=" + id + ", name=" + name
+				+ ", employeeId=" + employeeId + ", panNumber=" + panNumber + ", joiningDate=" + joiningDate + "]";
 	}
 
 }

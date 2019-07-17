@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.centraprise.hrmodule.exception.CentrapriseException;
 import com.centraprise.hrmodule.model.DeductionCommand;
+import com.centraprise.hrmodule.model.DeductionsInfoListDTO;
 import com.centraprise.hrmodule.model.EmployeeListDTO;
 import com.centraprise.hrmodule.service.DeductionService;
 import com.centraprise.hrmodule.service.EmployeeService;
@@ -38,18 +39,33 @@ public class DeductionInfoController {
 			}
 			return "deductioninfo";
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new CentrapriseException("Database is down");
 		}
 	}
 
 	@PostMapping("/saveDeductionInfo")
-	public String saveDeduction(@ModelAttribute("deductionInfoForm") DeductionCommand deductionCommand) {
+	public String saveDeduction(@ModelAttribute("deductionInfoForm") DeductionCommand deductionCommand, Model model) {
 		try {
 			deductionService.saveDeduction(deductionCommand);
 		} catch (Exception e) {
-
+			e.printStackTrace();
+			throw new CentrapriseException("Database is down");
 		}
-		return "redirect:/employeeList";
+		return "redirect:/dedcutionsInfoList";
+	}
+
+	@GetMapping("/dedcutionsInfoList")
+	public String getDeductionsInfo(Model model) {
+
+		try {
+			List<DeductionsInfoListDTO> deductionsInfoListDTOs = deductionService.getDeductionsInfo();
+			model.addAttribute("deductionInfo", deductionsInfoListDTOs);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new CentrapriseException("Database is down");
+		}
+		return "deductions";
 	}
 
 }

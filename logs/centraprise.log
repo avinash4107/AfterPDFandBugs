@@ -1,0 +1,209 @@
+"2019-07-17 22:23:40 [main] INFO  c.c.hrmodule.CentrapriseApplication - Starting CentrapriseApplication on TheNagothu with PID 4932 (started by Avinash N in C:\Users\Avinash N\Desktop\new\centrademo)
+""2019-07-17 22:23:40 [main] DEBUG c.c.hrmodule.CentrapriseApplication - Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+""2019-07-17 22:23:41 [main] INFO  c.c.hrmodule.CentrapriseApplication - No active profile set, falling back to default profiles: default
+""2019-07-17 22:23:58 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+""2019-07-17 22:24:02 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 4224ms. Found 6 repository interfaces.
+""2019-07-17 22:24:10 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c846a4eb] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+""2019-07-17 22:24:21 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+""2019-07-17 22:24:22 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+""2019-07-17 22:24:22 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.16]
+""2019-07-17 22:24:22 [main] INFO  o.a.c.core.AprLifecycleListener - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_131\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Java\jdk1.8.0_131\jre\bin;C:/Program Files/Java/jre1.8.0_131/bin/server;C:/Program Files/Java/jre1.8.0_131/bin;C:/Program Files/Java/jre1.8.0_131/lib/amd64;C:\apache-maven-3.5.2\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Git\cmd;C:\Program Files\Cloud Foundry;C:\Program Files\Java\jdk1.8.0_131\bin;E:\javafolder\Frame Works\gradle-4.0.2/bin;C:\apache-ant-1.9.4/bin;C:\mongodb-win32-x86_64-2008plus-3.4.20-1-gbc40d08211\bin;C:\apache-maven-3.5.2/bin;C:\Users\Avinash N\Desktop\sts-4.1.2.RELEASE;;.]
+""2019-07-17 22:24:24 [main] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/Avinash%20N/.m2/repository/xalan/xalan/2.7.0/xercesImpl.jar] from classloader hierarchy
+"java.io.FileNotFoundException: C:\Users\Avinash N\.m2\repository\xalan\xalan\2.7.0\xercesImpl.jar (The system cannot find the file specified)
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:219)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:149)
+	at java.util.jar.JarFile.<init>(JarFile.java:166)
+	at java.util.jar.JarFile.<init>(JarFile.java:130)
+	at org.apache.tomcat.util.compat.JreCompat.jarFileNewInstance(JreCompat.java:164)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:266)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:83)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5125)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1377)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1367)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:902)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:831)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1377)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1367)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:902)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:423)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:928)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:455)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:106)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:86)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:415)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:174)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:181)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:154)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at com.centraprise.hrmodule.CentrapriseApplication.main(CentrapriseApplication.java:14)
+"2019-07-17 22:24:24 [main] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/Avinash%20N/.m2/repository/xalan/xalan/2.7.0/xml-apis.jar] from classloader hierarchy
+"java.io.FileNotFoundException: C:\Users\Avinash N\.m2\repository\xalan\xalan\2.7.0\xml-apis.jar (The system cannot find the file specified)
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:219)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:149)
+	at java.util.jar.JarFile.<init>(JarFile.java:166)
+	at java.util.jar.JarFile.<init>(JarFile.java:130)
+	at org.apache.tomcat.util.compat.JreCompat.jarFileNewInstance(JreCompat.java:164)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:266)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:83)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5125)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1377)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1367)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:902)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:831)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1377)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1367)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:902)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:423)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:928)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:455)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:106)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:86)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:415)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:174)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:181)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:154)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at com.centraprise.hrmodule.CentrapriseApplication.main(CentrapriseApplication.java:14)
+"2019-07-17 22:24:24 [main] WARN  o.a.t.util.scan.StandardJarScanner - Failed to scan [file:/C:/Users/Avinash%20N/.m2/repository/xalan/xalan/2.7.0/serializer.jar] from classloader hierarchy
+"java.io.FileNotFoundException: C:\Users\Avinash N\.m2\repository\xalan\xalan\2.7.0\serializer.jar (The system cannot find the file specified)
+	at java.util.zip.ZipFile.open(Native Method)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:219)
+	at java.util.zip.ZipFile.<init>(ZipFile.java:149)
+	at java.util.jar.JarFile.<init>(JarFile.java:166)
+	at java.util.jar.JarFile.<init>(JarFile.java:130)
+	at org.apache.tomcat.util.compat.JreCompat.jarFileNewInstance(JreCompat.java:164)
+	at org.apache.tomcat.util.scan.JarFileUrlJar.<init>(JarFileUrlJar.java:65)
+	at org.apache.tomcat.util.scan.JarFactory.newInstance(JarFactory.java:49)
+	at org.apache.tomcat.util.scan.StandardJarScanner.process(StandardJarScanner.java:374)
+	at org.apache.tomcat.util.scan.StandardJarScanner.processURLs(StandardJarScanner.java:309)
+	at org.apache.tomcat.util.scan.StandardJarScanner.doScanClassPath(StandardJarScanner.java:266)
+	at org.apache.tomcat.util.scan.StandardJarScanner.scan(StandardJarScanner.java:229)
+	at org.apache.jasper.servlet.TldScanner.scanJars(TldScanner.java:262)
+	at org.apache.jasper.servlet.TldScanner.scan(TldScanner.java:104)
+	at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:83)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5125)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1377)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1367)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:902)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:831)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1377)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1367)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:902)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:423)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:928)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:455)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:106)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:86)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:415)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:174)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:181)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:154)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248)
+	at com.centraprise.hrmodule.CentrapriseApplication.main(CentrapriseApplication.java:14)
+"2019-07-17 22:24:25 [main] INFO  org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+""2019-07-17 22:24:25 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+""2019-07-17 22:24:34 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+""2019-07-17 22:24:34 [main] WARN  c.z.hikari.util.DriverDataSource - Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+""2019-07-17 22:24:35 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+""2019-07-17 22:24:36 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+""2019-07-17 22:24:37 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.3.7.Final}
+""2019-07-17 22:24:37 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+""2019-07-17 22:24:38 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+""2019-07-17 22:24:40 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+""2019-07-17 22:24:51 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+""2019-07-17 22:24:59 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+""2019-07-17 22:25:00 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+""2019-07-17 22:25:03 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/signup'], []
+""2019-07-17 22:25:03 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/'], []
+""2019-07-17 22:25:04 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@18fcfe7e, org.springframework.security.web.context.SecurityContextPersistenceFilter@43fdef43, org.springframework.security.web.header.HeaderWriterFilter@350ede1, org.springframework.security.web.authentication.logout.LogoutFilter@6a233d33, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5bb661e0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@73973e77, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@20843604, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1ed0128b, org.springframework.security.web.session.SessionManagementFilter@65852d05, org.springframework.security.web.access.ExceptionTranslationFilter@5ab29866, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@42a89cef]
+""2019-07-17 22:25:04 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+""2019-07-17 22:25:05 [main] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+""2019-07-17 22:25:06 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+""2019-07-17 22:25:06 [main] INFO  c.c.hrmodule.CentrapriseApplication - Started CentrapriseApplication in 104.409 seconds (JVM running for 119.599)
+""2019-07-17 22:25:14 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+""2019-07-17 22:25:55 [http-nio-8080-exec-9] INFO  o.h.h.i.QueryTranslatorFactoryInitiator - HHH000397: Using ASTQueryTranslatorFactory
+""2019-07-17 22:26:06 [http-nio-8080-exec-7] INFO  c.c.h.service.EmployeeServiceImpl - Returningn Employee details===>[]
+""2019-07-17 22:31:30 [http-nio-8080-exec-3] INFO  c.c.h.service.EmployeeServiceImpl - Employeee number already exists with number=======>0
+""2019-07-17 22:31:30 [http-nio-8080-exec-3] INFO  c.c.h.service.EmployeeServiceImpl - saveEmployee(EmployeeCommand employeeDetails) invoked with data ====>EmployeeCommand [empId=0, employeenumber=1, name=avinash, gender=M, bday=2019-12-12, pan=BCJPN9780Q, maritalstatus=S, email=tech.avinash1995@gmail.com, phone=9441213433, password=Avinash_45, doornum=1, vlg=Thurakapalem, mandal=hyd, country=India, state=Andhrapradesh, district=Guntur, pin=522603, startdate=2019-12-12, endDate=2019-12-12, job=software engineer, joindate=2019-12-12, service=1.0, manager=avinash, bankname=sbi, accountnumber=1111, ifsc=23958293, uan=111111, adhar=11111, previousemp=11111, previousempleavingdate=2019-11-12, previousempstartdate=2019-01-12, previousempenddate=2019-12-12]
+""2019-07-17 22:31:30 [http-nio-8080-exec-3] INFO  c.c.h.service.EmployeeServiceImpl - Returningn Employee details===>[EmployeeListDTO [primaryEmployeeId=1, id=1, name=avinash, employeeId=1, panNumber=BCJPN9780Q, joiningDate=12-12-2019]]
+""2019-07-17 22:31:38 [http-nio-8080-exec-10] INFO  c.c.h.service.EmployeeServiceImpl - EmployeeDetails=========com.centraprise.hrmodule.entity.EmployeeDetails@7a27e715
+""2019-07-17 22:31:38 [http-nio-8080-exec-10] INFO  c.c.h.service.EmployeeServiceImpl - Returning data with========>EmployeeInfoListDTO [empId=1, employeenumber=1, name=avinash, gender=M, bday=12-12-2019, pan=BCJPN9780Q, maritalstatus=S, email=tech.avinash1995@gmail.com, phone=9441213433, password=Avinash_45, doornum=1, vlg=Thurakapalem, mandal=hyd, country=India, state=Andhrapradesh, district=Guntur, pin=522603, startdate=12-12-2019, endDate=12-12-2019, job=software engineer, joindate=12-12-2019, service=1.0, manager=avinash, bankname=sbi, accountnumber=1111, ifsc=23958293, uan=111111, adhar=11111, previousemp=11111, previousempleavingdate=12-11-2019, previousempstartdate=12-01-2019, previousempenddate=12-12-2019]
+""2019-07-17 22:31:41 [http-nio-8080-exec-4] INFO  c.c.h.service.EmployeeServiceImpl - EmployeeDetails=========com.centraprise.hrmodule.entity.EmployeeDetails@398c8927
+""2019-07-17 22:31:43 [http-nio-8080-exec-4] INFO  c.c.h.service.EmployeeServiceImpl - Returning data with========>EmployeeInfoListDTO [empId=1, employeenumber=1, name=avinash, gender=M, bday=12-12-2019, pan=BCJPN9780Q, maritalstatus=S, email=tech.avinash1995@gmail.com, phone=9441213433, password=Avinash_45, doornum=1, vlg=Thurakapalem, mandal=hyd, country=India, state=Andhrapradesh, district=Guntur, pin=522603, startdate=12-12-2019, endDate=12-12-2019, job=software engineer, joindate=12-12-2019, service=1.0, manager=avinash, bankname=sbi, accountnumber=1111, ifsc=23958293, uan=111111, adhar=11111, previousemp=11111, previousempleavingdate=12-11-2019, previousempstartdate=12-01-2019, previousempenddate=12-12-2019]
+""2019-07-17 22:32:53 [http-nio-8080-exec-6] INFO  c.c.h.service.EmployeeServiceImpl - Returningn Employee details===>[EmployeeListDTO [primaryEmployeeId=1, id=1, name=avinash, employeeId=1, panNumber=BCJPN9780Q, joiningDate=11-06-0018]]
+""2019-07-17 22:32:56 [http-nio-8080-exec-2] INFO  c.c.h.service.EmployeeServiceImpl - Returningn Employee details===>[EmployeeListDTO [primaryEmployeeId=1, id=1, name=avinash, employeeId=1, panNumber=BCJPN9780Q, joiningDate=11-06-0018]]
+""2019-07-17 22:33:11 [http-nio-8080-exec-1] INFO  c.c.h.service.EmployeeServiceImpl - Returningn Employee details===>[EmployeeListDTO [primaryEmployeeId=1, id=1, name=avinash, employeeId=1, panNumber=BCJPN9780Q, joiningDate=11-06-0018]]
+""2019-07-17 22:33:31 [http-nio-8080-exec-10] INFO  c.c.h.service.EmployeeServiceImpl - Returningn Employee details===>[EmployeeListDTO [primaryEmployeeId=1, id=1, name=avinash, employeeId=1, panNumber=BCJPN9780Q, joiningDate=11-06-0018]]
+"

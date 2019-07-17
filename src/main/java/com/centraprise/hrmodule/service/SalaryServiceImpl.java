@@ -68,7 +68,13 @@ public class SalaryServiceImpl implements SalaryService {
 			info.setNetSalory(netSalary);
 			info.setIncomeTax(incomeTaxamount);
 			info.setProvidentFund(providentFund);
-			info.setProfessionalTax(100f);
+			if (saloryCommand.getBasic() <= 15000) {
+				info.setProfessionalTax(0);
+			} else if (saloryCommand.getBasic() > 15000 && saloryCommand.getBasic() <= 20000) {
+				info.setProfessionalTax(150f);
+			} else {
+				info.setProfessionalTax(200f);
+			}
 			info.setEmployeeNumber(Integer.parseInt(saloryCommand.getEmployeenumber()));
 			saloryRepository.save(info);
 		} catch (Exception e) {

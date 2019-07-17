@@ -13,8 +13,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import javax.mail.Message;

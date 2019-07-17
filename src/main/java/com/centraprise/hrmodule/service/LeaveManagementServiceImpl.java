@@ -5,16 +5,16 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +33,7 @@ import com.centraprise.hrmodule.repository.LeaveManagementRepository;
 @Service
 public class LeaveManagementServiceImpl implements LeaveManagementService {
 
+	private static final Logger log = LoggerFactory.getLogger(LeaveManagementServiceImpl.class);
 	@Autowired
 	private LeaveManagementRepository leaveManagementRepository;
 
@@ -71,6 +72,7 @@ public class LeaveManagementServiceImpl implements LeaveManagementService {
 						dto.setMonth(monthlyLeaves.getMonth());
 						dto.setNumberOfdays(monthlyLeaves.getNumberOfDaysLeave());
 						infoDtos.add(dto);
+						log.info("Leaves Info====>" + infoDtos);
 					}
 				}
 			} else {
@@ -115,10 +117,17 @@ public class LeaveManagementServiceImpl implements LeaveManagementService {
 	}
 
 	public void insertLeaveInfo(LeaveForm leaveForm, int year, String startDate, String endDate) {
+
+		log.info("insertLeaveInfo(LeaveForm leaveForm, int year, String startDate, String endDate)====>" + leaveForm);
+		log.info("year==>" + year);
+		log.info("startDate==>" + startDate);
+		log.info("endDate==>" + endDate);
+
 		ManageLeave leave = leaveManagementRepository
 				.findByEmployeeNumber(Integer.parseInt(leaveForm.getEmployeenumber()));
 
 		if (leave != null) {
+			log.info("Employee Already Exists or not=====>" + leave.getEmployeeNumber());
 			leave.setEmployeeNumber(Integer.parseInt(leaveForm.getEmployeenumber()));
 
 			Set<MonthLeave> monthleave = leave.getMonthLeavesInfo();
@@ -127,7 +136,7 @@ public class LeaveManagementServiceImpl implements LeaveManagementService {
 			// mon.setNumberOfDaysLeave(leaveForm.getNumberofdays());
 			mon.setLeaveEndDate(leaveForm.getEndDate());
 			mon.setLeaveStartDate(leaveForm.getStartDate());
-
+			mon.setYear(year);
 			try {
 				mon.setNumberOfDaysLeave(findNumberOfdaysLeave(startDate, endDate));
 			} catch (Exception e) {
@@ -149,7 +158,7 @@ public class LeaveManagementServiceImpl implements LeaveManagementService {
 			mLeave.setLeaveEndDate(leaveForm.getEndDate());
 			mLeave.setLeaveStartDate(leaveForm.getStartDate());
 			mLeave.setLeaveType(leaveForm.getLeaveType());
-
+			mLeave.setYear(year);
 			try {
 				mLeave.setNumberOfDaysLeave(findNumberOfdaysLeave(startDate, endDate));
 			} catch (Exception e) {
@@ -230,52 +239,51 @@ public class LeaveManagementServiceImpl implements LeaveManagementService {
 			cal.setTime(today);
 			int year = cal.get(Calendar.YEAR);
 			int month = cal.get(Calendar.MONTH);
-			List<ManageLeave> manageLeave = leaveManagementRepository.findAll();
 			List<FinalSalaryInfoDTO> finalDto = new ArrayList<FinalSalaryInfoDTO>();
-			if (manageLeave != null) {
-				int i = 1;
-				float creditedLeaves = 22;
-				int usedLeaves = 0;
-				Map<Integer, Map<Integer, Integer>> leaves = new HashMap<>();
-				for (ManageLeave manage : manageLeave) {
-					FinalSalaryInfoDTO infoDTO = new FinalSalaryInfoDTO();
-					infoDTO.setEmployeeNumber(manage.getEmployeeNumber());
-					infoDTO.setId(i++);
-					infoDTO.setYear(year);
-					
-					leaves.put(manage.getEmployeeNumber(), new HashMap<>());
-					for (MonthLeave leave : manage.getMonthLeavesInfo()) {
-						usedLeaves = usedLeaves + leave.getNumberOfDaysLeave();
-						if (leaves.containsKey(manage.getEmployeeNumber())) {
-							Map<Integer, Integer> leaveCountByYear = leaves.get(manage.getEmployeeNumber());
-							if (leaveCountByYear.containsKey(year)) {
-								usedLeaves = leaveCountByYear.get(year);
+			List<EmployeeDetails> employeeDetails = employeeRepository.findAll();
+			if (employeeDetails != null && employeeDetails.size() > 0) {
+				for (EmployeeDetails empDetails : employeeDetails) {
+					FinalSalaryInfoDTO finalInfoDTO = new FinalSalaryInfoDTO();
+					finalInfoDTO.setEmployeeNumber(empDetails.getEmployeeNumber());
+					ManageLeave manageLeave = leaveManagementRepository
+							.findByEmployeeNumber(empDetails.getEmployeeNumber());
+					if (manageLeave != null) {
+						int i = 1;
+						float creditedLeaves = 22;
+						int usedLeaves = 0;
+						// finalInfoDTO.setEmployeeNumber(empDetails.getEmployeeNumber());
+						finalInfoDTO.setId(i++);
+						finalInfoDTO.setYear(year);
+						for (MonthLeave leave : manageLeave.getMonthLeavesInfo()) {
+							if (leave.getYear() == year) {
 								usedLeaves = usedLeaves + leave.getNumberOfDaysLeave();
-								leaveCountByYear.put(year, usedLeaves);
-							} else {
-								leaveCountByYear.put(year, leave.getNumberOfDaysLeave());
 							}
-
 						}
-					}
-
-					float balanceLeaves = 0;
-					boolean flag = false;
-					if (creditedLeaves < usedLeaves) {
-						balanceLeaves = usedLeaves - creditedLeaves;
-						flag = true;
+						float balanceLeaves = 0;
+						boolean flag = false;
+						if (creditedLeaves < usedLeaves) {
+							balanceLeaves = usedLeaves - creditedLeaves;
+							flag = true;
+						} else {
+							balanceLeaves = creditedLeaves - usedLeaves;
+						}
+						finalInfoDTO.setCreditedLeavs(creditedLeaves);
+						finalInfoDTO.setAvailed(usedLeaves);
+						finalInfoDTO.setBalance(balanceLeaves);
+						if (flag) {
+							finalInfoDTO.setLossOfPay(balanceLeaves);
+						} else {
+							finalInfoDTO.setLossOfPay(0);
+						}
+						finalDto.add(finalInfoDTO);
 					} else {
-						balanceLeaves = creditedLeaves - usedLeaves;
+						finalInfoDTO.setAvailed(0);
+						finalInfoDTO.setBalance(22);
+						finalInfoDTO.setCreditedLeavs(22);
+						finalInfoDTO.setYear(year);
+						finalInfoDTO.setLossOfPay(0);
+						finalDto.add(finalInfoDTO);
 					}
-					infoDTO.setCreditedLeavs(creditedLeaves);
-					infoDTO.setAvailed(usedLeaves);
-					infoDTO.setBalance(balanceLeaves);
-					if (flag) {
-						infoDTO.setLossOfPay(balanceLeaves);
-					} else {
-						infoDTO.setLossOfPay(0);
-					}
-					finalDto.add(infoDTO);
 				}
 			}
 
